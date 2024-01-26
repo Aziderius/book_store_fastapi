@@ -1,1 +1,1 @@
-# book_store_fastapi
+# Book store simulation project using FastAPI, PostgreSQL and SQLalchemy
