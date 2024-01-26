@@ -1,0 +1,768 @@
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users (
+	id SERIAL,
+	username varchar(45) DEFAULT NULL,
+	first_name varchar(45) DEFAULT NULL,
+	last_name varchar(45) DEFAULT NULL,
+	email varchar(200) DEFAULT NULL,
+	hashed_password varchar(200) DEFAULT NULL,
+	role varchar(45) DEFAULT NULL,
+	PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS author;
+
+CREATE TABLE author (
+	id SERIAL,
+	author_name varchar(45) DEFAULT NULL,
+	PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS genre;
+
+CREATE TABLE genre (
+	id SERIAL,
+	genre_name varchar(45) DEFAULT NULL,
+	PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS books;
+
+CREATE TABLE books (
+	id SERIAL,
+	title varchar(200) DEFAULT NULL,
+	author_id integer DEFAULT NULL,
+	genre_id integer DEFAULT NULL,
+	published_date integer DEFAULT NULL,
+	page_number integer DEFAULT NULL,
+	price float DEFAULT NULL,
+	rating integer DEFAULT NULL,
+	synopsis varchar(255) DEFAULT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (author_id) REFERENCES author(id),
+	FOREIGN KEY (genre_id) REFERENCES genre(id)
+);
+
+DROP TABLE IF EXISTS own_library;
+
+CREATE TABLE own_library (
+	id SERIAL,
+	book_id integer DEFAULT NULL,
+	personal_decription varchar(255) DEFAULT NULL,
+	personal_rating integer DEFAULT NULL,
+	owner_id integer DEFAULT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (book_id) REFERENCES books(id),
+	FOREIGN KEY (owner_id) REFERENCES users(id)
+);
+
+/* GENRES */
+
+INSERT INTO genre (genre_name) VALUES ('Art');
+INSERT INTO genre (genre_name) VALUES ('Best seller');
+INSERT INTO genre (genre_name) VALUES ('Business');
+INSERT INTO genre (genre_name) VALUES ('Children');
+INSERT INTO genre (genre_name) VALUES ('Classics');
+INSERT INTO genre (genre_name) VALUES ('Fantasy');
+INSERT INTO genre (genre_name) VALUES ('Fiction');
+INSERT INTO genre (genre_name) VALUES ('Food and drink');
+INSERT INTO genre (genre_name) VALUES ('Health');
+INSERT INTO genre (genre_name) VALUES ('Historical fiction');
+INSERT INTO genre (genre_name) VALUES ('History');
+INSERT INTO genre (genre_name) VALUES ('Horror');
+INSERT INTO genre (genre_name) VALUES ('Humor');
+INSERT INTO genre (genre_name) VALUES ('Mystery');
+INSERT INTO genre (genre_name) VALUES ('Nonfiction');
+INSERT INTO genre (genre_name) VALUES ('Philosophy');
+INSERT INTO genre (genre_name) VALUES ('Poetry');
+INSERT INTO genre (genre_name) VALUES ('Politics');
+INSERT INTO genre (genre_name) VALUES ('Phylosophy');
+INSERT INTO genre (genre_name) VALUES ('Religion');
+INSERT INTO genre (genre_name) VALUES ('Romance');
+INSERT INTO genre (genre_name) VALUES ('Science');
+INSERT INTO genre (genre_name) VALUES ('Science fiction');
+INSERT INTO genre (genre_name) VALUES ('Self help');
+INSERT INTO genre (genre_name) VALUES ('Sequential art');
+INSERT INTO genre (genre_name) VALUES ('Spirituality');
+INSERT INTO genre (genre_name) VALUES ('Thriller');
+INSERT INTO genre (genre_name) VALUES ('Travel');
+INSERT INTO genre (genre_name) VALUES ('Womens fiction');
+INSERT INTO genre (genre_name) VALUES ('Young adult');
+
+/* AUTHORS */
+
+INSERT INTO author (author_name) VALUES ('Banksy');
+INSERT INTO author (author_name) VALUES ('Robert Clark');
+INSERT INTO author (author_name) VALUES ('David Bayles and Ted Orland');
+INSERT INTO author (author_name) VALUES ('Betty Edwards');
+INSERT INTO author (author_name) VALUES ('Umberto Eco');
+INSERT INTO author (author_name) VALUES ('Ernst Gombrich');
+INSERT INTO author (author_name) VALUES ('DK');
+INSERT INTO author (author_name) VALUES ('John Berger');
+INSERT INTO author (author_name) VALUES ('Karen J. Hicks');
+INSERT INTO author (author_name) VALUES ('Daniel James Brown');
+INSERT INTO author (author_name) VALUES ('Janine Mendenhall');
+INSERT INTO author (author_name) VALUES ('Wayne Stewart');
+INSERT INTO author (author_name) VALUES ('Pedro Umbert');
+INSERT INTO author (author_name) VALUES ('Kathleen Martin');
+INSERT INTO author (author_name) VALUES ('Mardo Williams');
+INSERT INTO author (author_name) VALUES ('Helene Segura');
+INSERT INTO author (author_name) VALUES ('Tina Fey');
+INSERT INTO author (author_name) VALUES ('Alan Moore');
+INSERT INTO author (author_name) VALUES ('Dimitrios Chytiris');
+INSERT INTO author (author_name) VALUES ('Becca Fitzpatrick');
+INSERT INTO author (author_name) VALUES ('Cassandra Clare');
+INSERT INTO author (author_name) VALUES ('Paulo Coelho');
+INSERT INTO author (author_name) VALUES ('Orson Scott Card');
+INSERT INTO author (author_name) VALUES ('Yann Martel');
+INSERT INTO author (author_name) VALUES ('J. R. R. Tolkien');
+INSERT INTO author (author_name) VALUES ('Randall Munroe');
+INSERT INTO author (author_name) VALUES ('J. K. Rowling');
+INSERT INTO author (author_name) VALUES ('Harlan Coben');
+INSERT INTO author (author_name) VALUES ('Suzanne Collins');
+INSERT INTO author (author_name) VALUES ('Max Brooks');
+INSERT INTO author (author_name) VALUES ('Stephenie Meyer');
+INSERT INTO author (author_name) VALUES ('James Dashner');
+INSERT INTO author (author_name) VALUES ('Stieg Larsson');
+INSERT INTO author (author_name) VALUES ('Carl Sagan and Ann Druyan');
+INSERT INTO author (author_name) VALUES ('Bram Stoker');
+INSERT INTO author (author_name) VALUES ('Patrick Rothfuss');
+INSERT INTO author (author_name) VALUES ('Mary Shelley');
+INSERT INTO author (author_name) VALUES ('Don Raskin');
+INSERT INTO author (author_name) VALUES ('Steve Case');
+INSERT INTO author (author_name) VALUES ('Patrick James McGinnis');
+INSERT INTO author (author_name) VALUES ('Chip Heath and Dan Heath');
+INSERT INTO author (author_name) VALUES ('Jim Koch');
+INSERT INTO author (author_name) VALUES ('Alejandro Cremades');
+INSERT INTO author (author_name) VALUES ('Chris Guillebeau');
+INSERT INTO author (author_name) VALUES ('Michael E. Gerber');
+INSERT INTO author (author_name) VALUES ('Robert Kiyosaki and Sharon Lechter');
+INSERT INTO author (author_name) VALUES ('James Sturm');
+INSERT INTO author (author_name) VALUES ('David Litchfield');
+INSERT INTO author (author_name) VALUES ('Håkan Nesser');
+INSERT INTO author (author_name) VALUES ('Dr. Seuss');
+INSERT INTO author (author_name) VALUES ('Zack Zombie');
+INSERT INTO author (author_name) VALUES ('Roald Dahl');
+INSERT INTO author (author_name) VALUES ('Frances Hodgson Burnett');
+INSERT INTO author (author_name) VALUES ('Franz Kafka');
+INSERT INTO author (author_name) VALUES ('John Bunyan');
+INSERT INTO author (author_name) VALUES ('Margaret Mitchell');
+INSERT INTO author (author_name) VALUES ('Emily Brontë');
+INSERT INTO author (author_name) VALUES ('Dante Alighieri');
+INSERT INTO author (author_name) VALUES ('Oscar Wilde');
+INSERT INTO author (author_name) VALUES ('Victor Hugo');
+INSERT INTO author (author_name) VALUES ('Antoine de Saint-Exupéry');
+INSERT INTO author (author_name) VALUES ('Lewis Carroll');
+INSERT INTO author (author_name) VALUES ('Gene Luen Yang');
+INSERT INTO author (author_name) VALUES ('Sarah J. Maas');
+INSERT INTO author (author_name) VALUES ('Rick Riordan');
+INSERT INTO author (author_name) VALUES ('Thomas E. Sniegoski');
+INSERT INTO author (author_name) VALUES ('Christopher Paolini');
+INSERT INTO author (author_name) VALUES ('George R. R. Martin');
+INSERT INTO author (author_name) VALUES ('Mitch Albom');
+INSERT INTO author (author_name) VALUES ('Joel C. Rosenberg');
+INSERT INTO author (author_name) VALUES ('Terry Hayes');
+INSERT INTO author (author_name) VALUES ('Jojo Moyes');
+INSERT INTO author (author_name) VALUES ('Dan Brown');
+INSERT INTO author (author_name) VALUES ('Liane Moriarty');
+INSERT INTO author (author_name) VALUES ('Chad Harbach');
+INSERT INTO author (author_name) VALUES ('Michael Crichton');
+INSERT INTO author (author_name) VALUES ('David Lebovitz');
+INSERT INTO author (author_name) VALUES ('Cecilia Granata');
+INSERT INTO author (author_name) VALUES ('Ina Garten');
+INSERT INTO author (author_name) VALUES ('Giada De Laurentiis');
+INSERT INTO author (author_name) VALUES ('Mark Bittman');
+INSERT INTO author (author_name) VALUES ('Nigella Lawson');
+INSERT INTO author (author_name) VALUES ('Pati Jinich');
+INSERT INTO author (author_name) VALUES ('Dave Asprey');
+INSERT INTO author (author_name) VALUES ('Mark Hyman');
+INSERT INTO author (author_name) VALUES ('JJ Smith');
+INSERT INTO author (author_name) VALUES ('Stephen D. Phinney and Jeff Volek');
+INSERT INTO author (author_name) VALUES ('Victoria Kelly');
+INSERT INTO author (author_name) VALUES ('Alice Hoffman');
+INSERT INTO author (author_name) VALUES ('Cindy Anstey');
+INSERT INTO author (author_name) VALUES ('Martha Hall Kelly');
+INSERT INTO author (author_name) VALUES ('Ken Follett');
+INSERT INTO author (author_name) VALUES ('Anita Diamant');
+INSERT INTO author (author_name) VALUES ('Monica Hesse');
+INSERT INTO author (author_name) VALUES ('Ruta Sepetys');
+INSERT INTO author (author_name) VALUES ('Ann Howard Creel');
+INSERT INTO author (author_name) VALUES ('Petra Mattfeldt');
+INSERT INTO author (author_name) VALUES ('Yuval Noah Harari');
+INSERT INTO author (author_name) VALUES ('Anthony C. Grayling');
+INSERT INTO author (author_name) VALUES ('Reza Aslan');
+INSERT INTO author (author_name) VALUES ('Charles C. Mann');
+INSERT INTO author (author_name) VALUES ('Bill Bryson');
+INSERT INTO author (author_name) VALUES ('William L. Shirer');
+INSERT INTO author (author_name) VALUES ('Robert K. Massie');
+INSERT INTO author (author_name) VALUES ('Corrie ten Boom');
+INSERT INTO author (author_name) VALUES ('Barbara Tuchman');
+INSERT INTO author (author_name) VALUES ('Richard Conniff');
+INSERT INTO author (author_name) VALUES ('Mark Edwards');
+INSERT INTO author (author_name) VALUES ('Stephen King');
+INSERT INTO author (author_name) VALUES ('Chet Williamson');
+INSERT INTO author (author_name) VALUES ('R.L. Stine');
+INSERT INTO author (author_name) VALUES ('Mark Z. Danielewski');
+INSERT INTO author (author_name) VALUES ('Jeff Kinney');
+INSERT INTO author (author_name) VALUES ('David Sedaris');
+INSERT INTO author (author_name) VALUES ('Bunmi Laditan');
+INSERT INTO author (author_name) VALUES ('Christopher Moore');
+INSERT INTO author (author_name) VALUES ('Ruth Ware');
+INSERT INTO author (author_name) VALUES ('Jackson Burnett');
+INSERT INTO author (author_name) VALUES ('Lisa Black');
+INSERT INTO author (author_name) VALUES ('Sarah Hilary');
+INSERT INTO author (author_name) VALUES ('Fiona Barton');
+INSERT INTO author (author_name) VALUES ('John Sandford');
+INSERT INTO author (author_name) VALUES ('Robert Galbraith');
+INSERT INTO author (author_name) VALUES ('Robert Bryndza');
+INSERT INTO author (author_name) VALUES ('Andrew Dickson');
+INSERT INTO author (author_name) VALUES ('Matt Haig');
+INSERT INTO author (author_name) VALUES ('Jennifer Ackerman');
+INSERT INTO author (author_name) VALUES ('Jon Ronson');
+INSERT INTO author (author_name) VALUES ('Elizabeth Gilbert');
+INSERT INTO author (author_name) VALUES ('Lesley Hazleton');
+INSERT INTO author (author_name) VALUES ('James Canton');
+INSERT INTO author (author_name) VALUES ('Evan Slater');
+INSERT INTO author (author_name) VALUES ('Truman Capote');
+INSERT INTO author (author_name) VALUES ('Penny Marshall');
+INSERT INTO author (author_name) VALUES ('Jostein Gaarder');
+INSERT INTO author (author_name) VALUES ('Richard Weikart');
+INSERT INTO author (author_name) VALUES ('Albert Camus');
+INSERT INTO author (author_name) VALUES ('Matthew Levering');
+INSERT INTO author (author_name) VALUES ('Mark A. Tietjen');
+INSERT INTO author (author_name) VALUES ('Immanuel Kant');
+INSERT INTO author (author_name) VALUES ('Jessica Pierce');
+INSERT INTO author (author_name) VALUES ('Aristotle and Hugh Tredennick');
+INSERT INTO author (author_name) VALUES ('Marcus Aurelius');
+INSERT INTO author (author_name) VALUES ('Friedrich Nietzsche');
+INSERT INTO author (author_name) VALUES ('Shel Silverstein');
+INSERT INTO author (author_name) VALUES ('Aracelis Girmay');
+INSERT INTO author (author_name) VALUES ('William Shakespeare');
+INSERT INTO author (author_name) VALUES ('Tyehimba Jess');
+INSERT INTO author (author_name) VALUES ('Patrick Woodcock');
+INSERT INTO author (author_name) VALUES ('Ashley-Elizabeth Best');
+INSERT INTO author (author_name) VALUES ('Julien Poirier');
+INSERT INTO author (author_name) VALUES ('Todd Seavey');
+INSERT INTO author (author_name) VALUES ('E.J. Dionne Jr.');
+INSERT INTO author (author_name) VALUES ('Don Watkins and Yaron Brook');
+INSERT INTO author (author_name) VALUES ('Philip G. Zimbardo');
+INSERT INTO author (author_name) VALUES ('Jeanne Safer');
+INSERT INTO author (author_name) VALUES ('Mark Wolynn');
+INSERT INTO author (author_name) VALUES ('Kay Redfield Jamison');
+INSERT INTO author (author_name) VALUES ('Daniel Kahneman');
+INSERT INTO author (author_name) VALUES ('Sigmund Freud');
+INSERT INTO author (author_name) VALUES ('Christina G. Hibbert');
+INSERT INTO author (author_name) VALUES ('Brad Warner');
+INSERT INTO author (author_name) VALUES ('James K.A. Smith');
+INSERT INTO author (author_name) VALUES ('Dan Barker');
+INSERT INTO author (author_name) VALUES ('Joseph Smith');
+INSERT INTO author (author_name) VALUES ('Karen Armstrong');
+INSERT INTO author (author_name) VALUES ('Krishna-Dwaipayana Vyasa');
+INSERT INTO author (author_name) VALUES ('Elizabeth Drescher');
+INSERT INTO author (author_name) VALUES ('Laura Florand');
+INSERT INTO author (author_name) VALUES ('Lynn Charles');
+INSERT INTO author (author_name) VALUES ('Ashlee Mallory');
+INSERT INTO author (author_name) VALUES ('Santino Hassell');
+INSERT INTO author (author_name) VALUES ('E.L. James');
+INSERT INTO author (author_name) VALUES ('Julia London');
+INSERT INTO author (author_name) VALUES ('Barbie Bohrman');
+INSERT INTO author (author_name) VALUES ('Catherine Bybee');
+INSERT INTO author (author_name) VALUES ('Katee Robert');
+INSERT INTO author (author_name) VALUES ('Susan Mallery');
+INSERT INTO author (author_name) VALUES ('Luba Vikhanski');
+INSERT INTO author (author_name) VALUES ('Anthony D. Barnosky and Elizabeth A. Hadly');
+INSERT INTO author (author_name) VALUES ('Brian Greene');
+INSERT INTO author (author_name) VALUES ('Sharman Apt Russell');
+INSERT INTO author (author_name) VALUES ('Charles Darwin');
+INSERT INTO author (author_name) VALUES ('Stephen Hawking');
+INSERT INTO author (author_name) VALUES ('K. Anders Ericsson and Robert Pool');
+INSERT INTO author (author_name) VALUES ('Carlo Rovelli');
+INSERT INTO author (author_name) VALUES ('Richard Dawkins');
+INSERT INTO author (author_name) VALUES ('Will McIntosh');
+INSERT INTO author (author_name) VALUES ('Sylvain Neuvel');
+INSERT INTO author (author_name) VALUES ('Douglas Adams');
+INSERT INTO author (author_name) VALUES ('Ernest Cline');
+INSERT INTO author (author_name) VALUES ('Frank Herbert');
+INSERT INTO author (author_name) VALUES ('Lisa Tawn Bergren');
+INSERT INTO author (author_name) VALUES ('Joe Hart');
+INSERT INTO author (author_name) VALUES ('Ruby Dixon');
+INSERT INTO author (author_name) VALUES ('Fauzia Burke');
+INSERT INTO author (author_name) VALUES ('Randy J. Paterson');
+INSERT INTO author (author_name) VALUES ('Joyce Meyer');
+INSERT INTO author (author_name) VALUES ('Jen Sincero');
+INSERT INTO author (author_name) VALUES ('Dale Carnegie');
+INSERT INTO author (author_name) VALUES ('Bryan Lee O''Malley');
+INSERT INTO author (author_name) VALUES ('Robert Kirkman');
+INSERT INTO author (author_name) VALUES ('Gege Akutami');
+INSERT INTO author (author_name) VALUES ('Jeph Loeb');
+INSERT INTO author (author_name) VALUES ('Yana Toboso');
+INSERT INTO author (author_name) VALUES ('Koyoharu Gotouge');
+INSERT INTO author (author_name) VALUES ('Fujino Ōmori');
+INSERT INTO author (author_name) VALUES ('Masashi Kishimoto');
+INSERT INTO author (author_name) VALUES ('Tadahiro Miura');
+INSERT INTO author (author_name) VALUES ('Kentarō Yabuki');
+INSERT INTO author (author_name) VALUES ('ShindoL');
+INSERT INTO author (author_name) VALUES ('Tsugumi Ōba');
+INSERT INTO author (author_name) VALUES ('Miguel Ruiz');
+INSERT INTO author (author_name) VALUES ('William Martin');
+INSERT INTO author (author_name) VALUES ('Crystal McVea');
+INSERT INTO author (author_name) VALUES ('Mare Cromwell');
+INSERT INTO author (author_name) VALUES ('Chad Veach');
+INSERT INTO author (author_name) VALUES ('Eckhart Tolle');
+INSERT INTO author (author_name) VALUES ('K.A. Tucker');
+INSERT INTO author (author_name) VALUES ('R.D. Ronald');
+INSERT INTO author (author_name) VALUES ('B.A. Paris');
+INSERT INTO author (author_name) VALUES ('Caroline Kepnes');
+INSERT INTO author (author_name) VALUES ('David Baldacci');
+INSERT INTO author (author_name) VALUES ('Danielle Esplin');
+INSERT INTO author (author_name) VALUES ('Lee Child');
+INSERT INTO author (author_name) VALUES ('Robert J. Mrazek');
+INSERT INTO author (author_name) VALUES ('Linwood Barclay');
+INSERT INTO author (author_name) VALUES ('S. Bedford');
+INSERT INTO author (author_name) VALUES ('Rick Antonson');
+INSERT INTO author (author_name) VALUES ('National Parks Conservation Association');
+INSERT INTO author (author_name) VALUES ('Rolf Potts');
+INSERT INTO author (author_name) VALUES ('Frances Mayes');
+INSERT INTO author (author_name) VALUES ('Marilyn Brant');
+INSERT INTO author (author_name) VALUES ('Paul Theroux');
+INSERT INTO author (author_name) VALUES ('Peter Mayle');
+INSERT INTO author (author_name) VALUES ('Patricia Schultz');
+INSERT INTO author (author_name) VALUES ('Nora Zelevansky');
+INSERT INTO author (author_name) VALUES ('Meghann Foye');
+INSERT INTO author (author_name) VALUES ('Sophie Kinsella');
+INSERT INTO author (author_name) VALUES ('Lauren Weisberger');
+INSERT INTO author (author_name) VALUES ('Helen Fielding');
+INSERT INTO author (author_name) VALUES ('Brynn Chapman');
+INSERT INTO author (author_name) VALUES ('Ransom Riggs');
+INSERT INTO author (author_name) VALUES ('Richelle Mead');
+INSERT INTO author (author_name) VALUES ('Jung Chang');
+INSERT INTO author (author_name) VALUES ('Abbi Glines');
+INSERT INTO author (author_name) VALUES ('Marieke Nijkamp');
+INSERT INTO author (author_name) VALUES ('Gena Showalter');
+INSERT INTO author (author_name) VALUES ('Robin Reul');
+INSERT INTO author (author_name) VALUES ('Suzanne Young');
+INSERT INTO author (author_name) VALUES ('Kate Evangelista');
+
+/* Art BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES 
+('Wall and Piece', 1, 1, 2005, 192, 44.18, 4, 'You are now reading the synopsis of the book: Wall and Piece'),
+('Feathers: Displays of Brilliant Plumage', 2, 1, 2016, 176, 49.05, 3, 'You are now reading the synopsis of the book: Feathers: Displays of Brilliant Plumage'),
+('Art and Fear: Observations on the Perils (and Rewards) of Artmaking', 3, 1, 1985, 122, 48.63, 4, 'You are now reading the synopsis of the book: Art and Fear: Observations on the Perils (and Rewards) of Artmaking'),
+('The New Drawing on the Right Side of the Brain', 4, 1, 1979, 291, 43.02, 3, 'You are now reading the synopsis of the book: The New Drawing on the Right Side of the Brain'),
+('History of Beauty', 5, 1, 2004, 438, 10.29, 4, 'You are now reading the synopsis of the book: History of Beauty'),
+('The Story of Art', 6, 1, 1950, 1064, 41.14, 4, 'You are now reading the synopsis of the book: The Story of Art'),
+('The Art Book', 7, 1, 1994, 400, 32.34, 2, 'You are now reading the synopsis of the book: The Art Book'),
+('Ways of Seeing', 8, 1, 1990, 176, 39.51, 5, 'You are now reading the synopsis of the book: Ways of Seeing');
+
+/* Best Seller BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES 
+('The Coming Woman: A Novel Based on the Life of the Infamous Feminist, Victoria Woodhull', 9, 2, 2014, 238, 17.93, 3, 'You are now reading the synopsis of the book: The Coming Woman: A Novel Based on the Life of the Infamous Feminist, Victoria Woodhull'),
+('The Boys in the Boat: Nine Americans and Their Epic Quest for Gold at the 1936 Berlin Olympics', 10, 2, 2013, 404, 22.60, 4, 'You are now reading the synopsis of the book: The Boys in the Boat: Nine Americans and Their Epic Quest for Gold at the 1936 Berlin Olympics'),
+('Starving Hearts', 11, 2, 2016, 300, 13.99, 2, 'You are now reading the synopsis of the book: Starving Hearts'),
+('America''s Cradle of Quarterbacks: Western Pennsylvania''s Football Factory from Johnny Unitas to Joe Montana', 12, 2, 2014, 241, 22.50, 3, 'You are now reading the synopsis of the book: America''s Cradle of Quarterbacks: Western Pennsylvania''s Football Factory from Johnny Unitas to Joe Montana'),
+('Aladdin and His Wonderful Lamp', 13, 2, 1910, 145, 53.13, 3, 'You are now reading the synopsis of the book: Aladdin and His Wonderful Lamp'), 
+('Penny Maybe', 14, 2, 1999, 165, 33.29, 3, 'You are now reading the synopsis of the book: Penny Maybe'),
+('Maude (1883-1993):She Grew Up with the country', 15, 2, 1996, 335, 18.02, 2, 'You are now reading the synopsis of the book: Maude (1883-1993):She Grew Up with the country'),
+('The Inefficiency Assassin: Time Management Tactics for Working Smarter, Not Longer', 16, 2, 2015, 312, 20.59, 5, 'You are now reading the synopsis of the book: The Inefficiency Assassin: Time Management Tactics for Working Smarter, Not Longer'),
+('Bossypants', 17, 2, 2011, 281, 49.46, 2, 'You are now reading the synopsis of the book: Bossypants'),
+('V for Vendetta', 18, 2, 2008, 296, 37.10, 4, 'You are now reading the synopsis of the book: V for Vendetta'),
+('The Songs of the Gods', 19, 2, 2013, 166, 44.48, 5, 'You are now reading the synopsis of the book: The Songs of the Gods'),
+('Hush, Hush', 20, 2, 2009, 368, 47.02, 3, 'You are now reading the synopsis of the book: Hush, Hush'),
+('City of Fallen Angels', 21, 2, 2011, 424, 11.23, 4, 'You are now reading the synopsis of the book: City of Fallen Angels'),
+('City of Bones: The Mortal Instruments 1', 21, 2, 2007, 458, 43.28, 3, 'You are now reading the synopsis of the book: City of Bones: The Mortal Instruments'),
+('City of Ashes: The Mortal Instruments 2', 21, 2, 2008, 512, 47.27, 2, 'You are now reading the synopsis of the book: City of Ashes: The Mortal Instruments 2'), 
+('Adultery', 22, 2, 2014, 272, 20.88, 5, 'You are now reading the synopsis of the book: Adultery'),
+('Ender''s Game: The Ender Quintet 1', 23, 2, 1985, 256, 43.64, 4, 'You are now reading the synopsis of the book: Ender''s Game: The Ender Quintet 1'),
+('Life of Pi', 24, 2, 2001, 326, 13.22, 4, 'You are now reading the synopsis of the book: Life of Pi'),
+('The Hobbit', 25, 2, 1937, 320, 17.80, 5, 'You are now reading the synopsis of the book: The Hobbit'),
+('The Lord of the Rings: The Fellowship of the Ring', 25, 2, 1954, 432, 10.27, 5, 'You are now reading the synopsis of the book: The Lord of the Rings: The Fellowship of the Ring')
+('What If?: Serious Scientific Answers to Absurd Hypothetical Questions', 26, 2, 2014, 303, 53.68, 4, 'You are now reading the synopsis of the book: What If?: Serious Scientific Answers to Absurd Hypothetical Questions'),
+('Harry Potter and the Deathly Hallows', 27, 2, 2007, 784, 23.32, 4, 'You are now reading the synopsis of the book: Harry Potter and the Deathly Hallows'),
+('Fool Me Once', 28, 2, 2016, 400, 16.96, 1, 'You are now reading the synopsis of the book: Fool Me Once'),
+('The Hunger Games', 29, 2, 2008, 374, 29.85, 5, 'You are now reading the synopsis of the book: The Hunger Games'),
+('Catching Fire', 29, 2, 2009, 391, 28.67, 5, 'You are now reading the synopsis of the book: Catching Fire'),
+('The Mockingjay', 29, 2, 2014, 390, 29.44, 4, 'You are now reading the synopsis of the book: The Mockingjay'),
+('Harry Potter and the Sorcerer''s Stone', 27, 2, 2001, 309, 13.90, 3, 'You are now reading the synopsis of the book: Harry Potter and the Sorcerer''s Stone'),
+('World War Z: An Oral History of the Zombie War', 30, 2, 2006, 342, 21.80, 1, 'You are now reading the synopsis of the book: World War Z: An Oral History of the Zombie War'),
+('Twilight', 31, 2, 2005, 498, 41.93, 2, 'You are now reading the synopsis of the book: Twilight'),
+('The Maze Runner', 32, 2, 2009, 372, 20.93, 5, 'You are now reading the synopsis of the book: The Maze Runner'),
+('The Girl Who Played with Fire', 33, 2, 2006, 576, 22.14, 2, 'You are now reading the synopsis of the book: The Girl Who Played with Fire'), 
+('The Demon-Haunted World: Science as a Candle in the Dark', 34, 2, 1995, 457, 52.25, 4, 'You are now reading the synopsis of the book: The Demon-Haunted World: Science as a Candle in the Dark'),
+('Eclipse', 31, 2, 2007, 629, 18.74, 2, 'You are now reading the synopsis of the book: Eclipse'),
+('Dracula', 35, 2, 1897, 431, 52.62, 4, 'You are now reading the synopsis of the book: Dracula'),
+('The Name of the Wind', 36, 2, 2007, 672, 50.59, 3, 'You are now reading the synopsis of the book: The Name of the Wind'),
+('Frankenstein', 37, 2, 1818, 285, 38.00, 3, 'You are now reading the synopsis of the book: Frankenstein');
+
+/* Business BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES 
+('The Dirty Little Secrets of Getting Your Dream Job', 38, 3, 2016, 192, 33.34, 4, 'You are now reading the synopsis of the book: The Dirty Little Secrets of Getting Your Dream Job'),
+('The Third Wave: An Entrepreneur''s Vision of the Future', 39, 3, 2016, 288, 12.61, 5, 'You are now reading the synopsis of the book: The Third Wave: An Entrepreneur''s Vision of the Future'),
+('The 10% Entrepreneur: Live Your Startup Dream Without Quitting Your Day Job', 40, 3, 2016, 226, 27.55, 3, 'You are now reading the synopsis of the book: The 10% Entrepreneur: Live Your Startup Dream Without Quitting Your Day Job'),
+('Made to Stick: Why Some Ideas Survive and Others Die', 41, 3, 2007, 336, 38.85, 5, 'You are now reading the synopsis of the book: Made to Stick: Why Some Ideas Survive and Others Die'),
+('Quench Your Own Thirst: Business Lessons Learned Over a Beer or Two', 42, 3, 2016, 272, 43.14, 1, 'You are now reading the synopsis of the book: Quench Your Own Thirst: Business Lessons Learned Over a Beer or Two'),
+('The Art of Startup Fundraising', 43, 3, 2016, 217, 21.00, 3, 'You are now reading the synopsis of the book: The Art of Startup Fundraising'),
+('Born for This: How to Find the Work You Were Meant to Do', 44, 3, 2016, 320, 21.59, 5, 'You are now reading the synopsis of the book: Born for This: How to Find the Work You Were Meant to Do'),
+('The E-Myth Revisited: Why Most Small Businesses Don''t Work and What to Do About It', 45, 3, 1995, 288, 36.91, 1, 'You are now reading the synopsis of the book: The E-Myth Revisited: Why Most Small Businesses Don''t Work and What to Do About It'),
+('Rich Dad, Poor Dad', 46, 3, 1997, 336, 51.74, 1, 'You are now reading the synopsis of the book: Rich Dad, Poor Dad');
+
+/* Children BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES 
+('Birdsong: A Story in Pictures', 47, 4, 2016, 60, 34.64, 3, 'You are now reading the synopsis of the book: Birdsong: A Story in Pictures'),
+('The Bear and the Piano', 48, 4, 2015, 40, 36.89, 1, 'You are now reading the synopsis of the book: The Bear and the Piano'),
+('The Lonely Ones', 49, 4, 2021, 240, 43.59, 5, 'You are now reading the synopsis of the book: The Lonely Ones'),
+('The Cat in the Hat', 50, 4, 1957, 61, 16.26, 2, 'You are now reading the synopsis of the book: The Cat in the Hat'),
+('Diary of a Minecraft Zombie Book 1: A Scare of a Dare', 51, 4, 2015, 106, 52.88, 4, 'You are now reading the synopsis of the book: Diary of a Minecraft Zombie Book 1: A Scare of a Dare'),
+('Matilda', 52, 4, 1988, 256, 28.34, 3, 'You are now reading the synopsis of the book: Matilda'),
+('Charlie and the Chocolate Factory', 52, 4, 1964, 176, 22.85, 3, 'You are now reading the synopsis of the book: Charlie and the Chocolate Factory');
+
+/* Classic BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('The Secret Garden', 53, 5, 1911, 375, 15.08, 4, 'You are now reading the synopsis of the book: The Secret Garden'),
+('The Metamorphosis', 54, 5, 1915, 70, 28.58, 1, 'You are now reading the synopsis of the book: The Metamorphosis'),
+('The Pilgrim''s Progress', 55, 5, 1678, 384, 50.26, 3, 'You are now reading the synopsis of the book: The Pilgrim''s Progress'),
+('Gone with the Wind', 56, 5, 1936, 1037, 32.49, 3, 'You are now reading the synopsis of the book: Gone with the Wind'),
+('Wuthering Heights', 57, 5, 1847, 368, 17.73, 4, 'You are now reading the synopsis of the book: Wuthering Heights'),
+('Divine Comedy', 58, 5, 1321, 960, 20.35, 5, 'You are now reading the synopsis of the book: Divine Comedy'),
+('The Picture of Dorian Gray', 59, 5, 1890, 288, 29.70, 2, 'You are now reading the synopsis of the book: The Picture of Dorian Gray'),
+('Les Misérables', 60, 5, 1862, 1462, 38.35, 5, 'You are now reading the synopsis of the book: Les Misérables'),
+('The Little Prince', 61, 5, 1943, 109, 45.42, 3, 'You are now reading the synopsis of the book: The Little Prince'),
+('Alice in Wonderland', 62, 5, 1865, 352, 55.53, 4, 'You are now reading the synopsis of the book: Alice in Wonderland');
+
+/* Fantasy BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('Avatar: The Last Airbender: Smoke and Shadow, Part 3', 63, 6, 2016, 80, 28.09, 5, 'You are now reading the synopsis of the book: Avatar: The Last Airbender: Smoke and Shadow, Part 3'),
+('A Court of Thorns and Roses', 64, 6, 2015, 456, 52.37, 3, 'You are now reading the synopsis of the book: A Court of Thorns and Roses'),
+('Throne of Glass', 64, 6, 2012, 416, 35.07, 4, 'You are now reading the synopsis of the book: Throne of Glass'),
+('The Hidden Oracle', 65, 6, 2016, 384, 52.26, 2, 'You are now reading the synopsis of the book: The Hidden Oracle'),
+('Demigods & Magicians: Percy and Annabeth Meet the Kanes', 65, 6, 2015, 224, 37.51, 5, 'You are now reading the synopsis of the book: Demigods & Magicians: Percy and Annabeth Meet the Kanes'),
+('City of Glass', 21, 6, 2009, 560, 56.02, 4, 'You are now reading the synopsis of the book: City of Glass'),
+('The Demonists', 66, 6, 2016, 336, 52.11, 2, 'You are now reading the synopsis of the book: The Demonists'),
+('Harry Potter and the Order of the Phoenix', 27, 6, 2003, 896, 31.63, 4, 'You are now reading the synopsis of the book: Harry Potter and the Order of the Phoenix'),
+('Harry Potter and the Half-Blood Prince', 27, 6, 2005, 672, 48.75, 5, 'You are now reading the synopsis of the book: Harry Potter and the Half-Blood Prince'),
+('Harry Potter and the Chamber of Secrets', 27, 6, 1998, 341, 14.74, 2, 'You are now reading the synopsis of the book: Harry Potter and the Chamber of Secrets'),
+('Eragon', 67, 6, 2002, 509, 43.87, 3, 'You are now reading the synopsis of the book: Eragon'),
+('A Storm of Swords', 68, 6, 2000, 973, 31.22, 3, 'You are now reading the synopsis of the book: A Storm of Swords');
+
+/* Fiction BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('The Time Keeper', 70, 7, 2012, 240, 27.88, 5, 'You are now reading the synopsis of the book: The Time Keeper'),
+('The First Hostage', 71, 7, 2015, 448, 25.85, 1, 'You are now reading the synopsis of the book: The First Hostage'),
+('I Am Pilgrim', 72, 7, 2013, 624, 10.60, 4, 'You are now reading the synopsis of the book: I Am Pilgrim'),
+('Me Before You', 73, 7, 2012, 480, 19.02, 3, 'You are now reading the synopsis of the book: Me Before You'),
+('Digital Fortress', 74, 7, 1998, 512, 58.00, 5, 'You are now reading the synopsis of the book: Digital Fortress'),
+('The Husband''s Secret', 75, 7, 2013, 448, 52.51, 5, 'You are now reading the synopsis of the book: The Husband''s Secret'),
+('The Da Vinci Code', 74, 7, 2003, 689, 22.96, 4, 'You are now reading the synopsis of the book: The Da Vinci Code'),
+('The Art of Fielding', 76, 7, 2011, 544, 22.10, 1, 'You are now reading the synopsis of the book: The Art of Fielding'),
+('Jurassic Park', 77, 7, 1990, 464, 44.97, 4, 'You are now reading the synopsis of the book: Jurassic Park'),
+('Inferno', 74, 7, 2013, 642, 41.00, 5, 'You are now reading the synopsis of the book: Inferno');
+
+/* Food and Drink BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('My Paris Kitchen: Recipes and Stories', 79, 8, 2014, 352, 33.37, 2, 'You are now reading the synopsis of the book: My Paris Kitchen: Recipes and Stories'),
+('Mama Tried: Traditional Italian Cooking for the Screwed Crude, Vegan, and Tattooed', 80, 8, 2016, 159, 14.02, 4, 'You are now reading the synopsis of the book: Mama Tried: Traditional Italian Cooking for the Screwed Crude, Vegan, and Tattooed'),
+('Barefoot Contessa Back to Basics', 81, 8, 2008, 272, 28.01, 1, 'You are now reading the synopsis of the book: Barefoot Contessa Back to Basics'),
+('Barefoot Contessa at Home: Everyday Recipes You''ll Make Over and Over Again', 81, 8, 2006, 256, 50.62, 5, 'You are now reading the synopsis of the book: Barefoot Contessa at Home: Everyday Recipes You''ll Make Over and Over Again'),
+('Everyday Italian: 125 Simple and Delicious Recipes', 82, 8, 2005, 256, 20.10, 4, 'You are now reading the synopsis of the book: Everyday Italian: 125 Simple and Delicious Recipes'),
+('How to Cook Everything Vegetarian: Simple Meatless Recipes for Great Food', 83, 8, 2007, 996, 46.01, 4, 'You are now reading the synopsis of the book: How to Cook Everything Vegetarian: Simple Meatless Recipes for Great Food'),
+('How to Be a Domestic Goddess: Baking and the Art of Comfort Cooking', 84, 8, 1998, 384, 28.25, 2, 'You are now reading the synopsis of the book: How to Be a Domestic Goddess: Baking and the Art of Comfort Cooking'),
+('Mexican Today: New and Rediscovered Recipes for Contemporary Kitchens', 85, 8, 2016, 320, 24.91, 5, 'You are now reading the synopsis of the book: Mexican Today: New and Rediscovered Recipes for Contemporary Kitchens');
+
+/* Health BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('The Bulletproof Diet: Lose up to a Pound a Day, Reclaim Energy and Focus, Upgrade Your Life', 86, 9, 2014, 320, 49.05, 3, 'You are now reading the synopsis of the book: The Bulletproof Diet: Lose up to a Pound a Day, Reclaim Energy and Focus, Upgrade Your Life'),
+('Eat Fat, Get Thin', 87, 9, 2016, 400, 54.07, 2, 'You are now reading the synopsis of the book: Eat Fat, Get Thin'),
+('10-Day Green Smoothie Cleanse: Lose Up to 15 Pounds in 10 Days!', 88, 9, 2014, 192, 49.71, 5, 'You are now reading the synopsis of the book: 10-Day Green Smoothie Cleanse: Lose Up to 15 Pounds in 10 Days!'),
+('The Art and Science of Low Carbohydrate Living', 89, 9, 2011, 316, 52.98, 4, 'You are now reading the synopsis of the book: The Art and Science of Low Carbohydrate Living')
+
+/* Historical Fiction */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('Mrs. Houdini', 90, 10, 2016, 320, 30.25, 1, 'You are now reading the synopsis of the book: Mrs. Houdini'),
+('The Marriage of Opposites', 91, 10, 2015, 400, 28.08, 4, 'You are now reading the synopsis of the book: The Marriage of Opposites'),
+('Love, Lies and Spies', 92, 10, 2016, 368, 20.55, 2, 'You are now reading the synopsis of the book: Love, Lies and Spies'),
+('Lilac Girls', 93, 10, 2016, 576, 17.28, 2, 'You are now reading the synopsis of the book: Lilac Girls'),
+('World Without End', 94, 10, 2007, 1024, 32.97, 4, 'You are now reading the synopsis of the book World Without End'),
+('The Red Tent', 95, 10, 1997, 321, 35.66, 5, 'You are now reading the synopsis of the book: The Red Tent'),
+('Girl in the Blue Coat', 96, 10, 2016, 320, 46.83, 2, 'You are now reading the synopsis of the book: Girl in the Blue Coat'),
+('Between Shades of Gray', 97, 10, 2011, 384, 20.79, 5, 'You are now reading the synopsis of the book: Between Shades of Gray'),
+('While You Were Mine', 98, 10, 2016, 352, 41.32, 5, 'You are now reading the synopsis of the book: While You Were Mine'),
+('The Secret Healer', 99, 10, 2016, 366, 34.56, 3, 'You are now reading the synopsis of the book: The Secret Healer');
+
+/* History BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('Sapiens: A Brief History of Humankind', 100, 11, 2011, 464, 54.23, 5, 'You are now reading the synopsis of the book: Sapiens: A Brief History of Humankind'),
+('The Age of Genius: The Seventeenth Century and the Birth of the Modern Mind', 101, 11, 2016, 368, 19.73, 1, 'You are now reading the synopsis of the book: The Age of Genius: The Seventeenth Century and the Birth of the Modern Mind'),
+('Zealot: The Life and Times of Jesus of Nazareth', 102, 11, 2013, 296, 24.70, 3, 'Zealot: The Life and Times of Jesus of Nazareth'),
+('1491: New Revelations of the Americas Before Columbus', 103, 11, 2005, 541, 21.80, 3, 'You are now reading the synopsis of the book: 1491: New Revelations of the Americas Before Columbus'),
+('A Short History of Nearly Everything', 104, 11, 2003, 686, 52.40, 5, 'You are now reading the synopsis of the book: A Short History of Nearly Everything'),
+('The Rise and Fall of the Third Reich: A History of Nazi Germany', 105, 11, 1960, 1249, 39.67, 2, 'You are now reading the synopsis of the book: The Rise and Fall of the Third Reich: A History of Nazi Germany'),
+('Catherine the Great: Portrait of a Woman', 106, 11, 2011, 625, 58.55, 4, 'You are now reading the synopsis of the book: Catherine the Great: Portrait of a Woman'),
+('The Hiding Place', 107, 11, 1971, 272, 55.91, 4, 'You are now reading the synopsis of the book: The Hiding Place'),
+('The Guns of August', 108, 11, 1962, 608, 14.54, 2, 'You are now reading the synopsis of the book: The Guns of August'),
+('House of Lost Worlds: Dinosaurs, Dynasties, and the Story of Life on Earth', 109, 11, 2016, 352, 43.70, 2, 'You are now reading the synopsis of the book: House of Lost Worlds: Dinosaurs, Dynasties, and the Story of Life on Earth');
+
+/* Horror BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('Follow You Home', 110, 12, 2015, 381, 21.36, 1, 'You are now reading the synopsis of the book: Follow You Home'),
+('Doctor Sleep', 111, 12, 2013, 531, 40.12, 2, 'You are now reading the synopsis of the book: Doctor Sleep'),
+('Psycho: Sanitarium', 112, 12, 2016, 288, 36.97, 5, 'You are now reading the synopsis of the book: Psycho: Sanitarium'),
+('Can You Keep a Secret?', 113, 12, 2016, 264, 48.64, 1, 'You are now reading the synopsis of the book: Can You Keep a Secret?'),
+('Night Shift', 111, 12, 1978, 409, 12.75, 4, 'You are now reading the synopsis of the book: Night Shift'),
+('Misery', 111, 12, 1987, 370, 34.79, 2, 'You are now reading the synopsis of the book: Misery'),
+('It', 111, 12, 1986, 1168, 25.01, 3, 'You are now reading the synopsis of the book: It'),
+('''Salem''s Lot', 111, 12, 1975, 483, 49.56, 4, 'You are now reading the synopsis of the book: ''Salem''s Lot'),
+('House of Leaves', 114, 12, 2000, 710, 54.89, 1, 'You are now reading the synopsis of the book: House of Leaves');
+
+/* Humor BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('The Long Haul', 119, 13, 2014, 217, 44.07, 1, 'You are now reading the synopsis of the book: The Long Haul'),
+('Old School', 119, 13, 2015, 224, 11.83, 5, 'You are now reading the synopsis of the book: Old School'),
+('Dress Your Family in Corduroy and Denim', 120, 13, 2004, 257, 43.68, 3, 'You are now reading the synopsis of the book: Dress Your Family in Corduroy and Denim'),
+('Toddlers Are A**holes: It''s Not Your Fault', 121, 13, 2015, 176, 25.55, 1, 'You are now reading the synopsis of the book: Toddlers Are A**holes: It''s Not Your Fault'),
+('When You Are Engulfed in Flames', 120, 13, 2008, 323, 30.89, 5, 'You are now reading the synopsis of the book: When You Are Engulfed in Flames'),
+('Lamb: The Gospel According to Biff, Christ''s Childhood Pal', 122, 13, 2002, 444, 55.50, 5, 'You are now reading the synopsis of the book: Lamb: The Gospel According to Biff, Christ''s Childhood Pal'),
+('Holidays on Ice', 120, 13, 1997, 176, 51.07, 2, 'You are now reading the synopsis of the book: Holidays on Ice');
+
+/* Mystery BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('In a Dark, Dark Wood', 123, 14, 2015, 308, 19.63, 1, 'You are now reading the synopsis of the book: In a Dark, Dark Wood'),
+('The Past Never Ends', 124, 14, 2012, 274, 56.50, 4, 'You are now reading the synopsis of the book: The Past Never Ends'),
+('That Darkness', 125, 14, 2016, 308, 13.92, 4, 'You are now reading the synopsis of the book: That Darkness'),
+('Tastes Like Fear', 126, 14, 2016, 416, 10.69, 3, 'You are now reading the synopsis of the book: Tastes Like Fear'),
+('The Widow', 127, 14, 2016, 324, 27.26, 2, 'You are now reading the synopsis of the book: The Widow'),
+('Extreme Prey', 128, 14, 2016, 406, 25.40, 5, 'You are now reading the synopsis of the book: Extreme Prey'),
+('Career of Evil', 129, 14, 2015, 609, 24.72, 2, 'You are now reading the synopsis of the book: Career of Evil'),
+('The Girl In The Ice', 130, 14, 2016, 394, 15.85, 4, 'You are now reading the synopsis of the book: The Girl In The Ice');
+
+/* Nonfiction BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('Worlds Elsewhere: Journeys Around Shakespeare''s Globe', 131, 15, 2016, 512, 40.30, 5, 'You are now reading the synopsis of the book: Worlds Elsewhere: Journeys Around Shakespeare''s Globe'),
+('Reasons to Stay Alive', 132, 15, 2015, 256, 26.41, 2, 'You are now reading the synopsis of the book: Reasons to Stay Alive'),
+('The Genius of Birds', 133, 15, 2016, 352, 17.24, 1, 'You are now reading the synopsis of the book: The Genius of Birds'),
+('So Youve Been Publicly Shamed', 134, 15, 2015, 290, 12.23, 2, 'You are now reading the synopsis of the book: So Youve Been Publicly Shamed'),
+('Big Magic: Creative Living Beyond Fear', 135, 15, 2015, 276, 30.80, 3, 'You are now reading the synopsis of the book: Big Magic: Creative Living Beyond Fear'),
+('Agnostic: A Spirited Manifesto', 136, 15, 2016, 224, 12.51, 5, 'You are now reading the synopsis of the book: Agnostic: A Spirited Manifesto'),
+('The Literature Book: Big Ideas Simply Explained', 137, 15, 2016, 352, 17.43, 3, 'You are now reading the synopsis of the book: The Literature Book: Big Ideas Simply Explained'),
+('Swell: A Year of Waves', 138, 15, 2012, 144, 45.58, 1, 'You are now reading the synopsis of the book: Swell: A Year of Waves'),
+('In Cold Blood', 139, 15, 1959, 343, 49.98, 4, 'You are now reading the synopsis of the book: In Cold Blood'),
+('My Mother Was Nuts', 140, 15, 2012, 326, 31.63, 4, 'You are now reading the synopsis of the book: My Mother Was Nuts');
+
+/* Philosophy BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('Sophie''s World', 141, 16, 1991, 403, 15.94, 5, 'You are now reading the synopsis of the book: Sophie''s World'),
+('The Death of Humanity: and the Case for Life', 142, 16, 2016, 368, 58.11, 4, 'You are now reading the synopsis of the book: The Death of Humanity: and the Case for Life'),
+('The Stranger', 143, 16, 1942, 159, 17.44, 4, 'You are now reading the synopsis of the book: The Stranger'),
+('Proofs of God: Classical Arguments from Tertullian to Barth', 144, 16, 2016, 256, 54.21, 3, 'You are now reading the synopsis of the book: Proofs of God: Classical Arguments from Tertullian to Barth'),
+('Kierkegaard: A Christian Missionary to Christians', 145, 16, 2016, 173, 47.13, 2, 'You are now reading the synopsis of the book: Kierkegaard: A Christian Missionary to Christians'),
+('Critique of Pure Reason', 146, 16, 1781, 785, 20.75, 3, 'You are now reading the synopsis of the book: Critique of Pure Reason'),
+('Run, Spot, Run: The Ethics of Keeping Pets', 147, 16, 2016, 256, 20.02, 1, 'You are now reading the synopsis of the book: Run, Spot, Run: The Ethics of Keeping Pets'),
+('The Nicomachean Ethics', 148, 16, 1351, 329, 36.34, 1, 'You are now reading the synopsis of the book: The Nicomachean Ethics'),
+('Meditations', 149, 16, 1180, 254, 25.89, 2, 'You are now reading the synopsis of the book: Meditations'),
+('Beyond Good and Evil', 150, 16, 1886, 240, 43.38, 1, 'You are now reading the synopsis of the book: Beyond Good and Evil');
+
+/* Poetry BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('A Light in the Attic', 151, 17, 1981, 176, 51.77, 3, 'You are now reading the synopsis of the book: A Light in the Attic'),
+('The Black Maria', 152, 17, 2016, 120, 52.15, 1, 'You are now reading the synopsis of the book: The Black Maria'),
+('Shakespeare''s Sonnets', 153, 17, 1609, 488, 20.66, 4, 'You are now reading the synopsis of the book: Shakespeare''s Sonnets'),
+('Olio', 154, 17, 2016, 256, 23.88, 1, 'You are now reading the synopsis of the book: Olio'),
+('You can''t bury them all: Poems', 155, 17, 2016, 128, 33.63, 2, 'You are now reading the synopsis of the book: You can''t bury them all: Poems'),
+('Slow States of Collapse: Poems', 156, 17, 2016, 104, 57.31, 3, 'You are now reading the synopsis of the book: Slow States of Collapse: Poems'),
+('Out of Print: City Lights Spotlight No. 14', 157, 17, 2016, 124, 53.64, 5, 'You are now reading the synopsis of the book: Out of Print: City Lights Spotlight No. 14');
+
+/* Politics BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('Libertarianism for Beginners', 158, 18, 2016, 202, 51.33, 2, 'You are now reading the synopsis of the book: Libertarianism for Beginners'),
+('Why the Right Went Wrong: Conservatism--From Goldwater to the Tea Party and Beyond', 159, 18, 2016, 534, 52.65, 4, 'You are now reading the synopsis of the book: Why the Right Went Wrong: Conservatism--From Goldwater to the Tea Party and Beyond'),
+('Equal Is Unfair: America''s Misguided Fight Against Income Inequality', 160, 18, 2016, 258, 56.86, 1, 'You are now reading the synopsis of the book: Equal Is Unfair: America''s Misguided Fight Against Income Inequality');
+
+/* Psychology BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('The Lucifer Effect: Understanding How Good People Turn Evil', 161, 19, 2007, 551, 10.40, 5, 'You are now reading the synopsis of the book: The Lucifer Effect: Understanding How Good People Turn Evil'),
+('The Golden Condom: And Other Essays on Love Lost and Found', 162, 19, 2016, 272, 39.43, 1, 'You are now reading the synopsis of the book: The Golden Condom: And Other Essays on Love Lost and Found'),
+('It Didn''t Start with You: How Inherited Family Trauma Shapes Who We Are and How to End the Cycle', 163, 19, 2016, 256, 56.27, 4, 'You are now reading the synopsis of the book: It Didn''t Start with You: How Inherited Family Trauma Shapes Who We Are and How to End the Cycle'),
+('An Unquiet Mind: A Memoir of Moods and Madness', 164, 19, 1995, 223, 21.30, 3, 'You are now reading the synopsis of the book: An Unquiet Mind: A Memoir of Moods and Madness'),
+('Thinking, Fast and Slow', 165, 19, 2011, 499, 21.14, 1, 'You are now reading the synopsis of the book: Thinking, Fast and Slow'),
+('Civilization and Its Discontents', 166, 19, 1930, 127, 59.95, 2, 'You are now reading the synopsis of the book: Civilization and Its Discontents'),
+('8 Keys to Mental Health Through Exercise', 167, 19, 2016, 304, 31.04, 1, 'You are now reading the synopsis of the book: 8 Keys to Mental Health Through Exercise');
+
+/* Religion BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('Don''t Be a Jerk: And Other Practical Advice from Dogen, Japan''s Greatest Zen Master', 168, 20, 2016, 336, 37.97, 2, 'You are now reading the synopsis of the book: Don''t Be a Jerk: And Other Practical Advice from Dogen, Japan''s Greatest Zen Master'),
+('You Are What You Love: The Spiritual Power of Habit', 169, 20, 2016, 224, 21.87, 4, 'You are now reading the synopsis of the book: You Are What You Love: The Spiritual Power of Habit'),
+('God: The Most Unpleasant Character in All Fiction', 170, 20, 2016, 310, 30.03, 5, 'You are now reading the synopsis of the book: God: The Most Unpleasant Character in All Fiction'),
+('The Book of Mormon', 171, 20, 1830, 779, 24.57, 3, 'You are now reading the synopsis of the book: The Book of Mormon'),
+('A History of God: The 4,000-Year Quest of Judaism, Christianity, and Islam', 172, 20, 1993, 496, 27.62, 1, 'You are now reading the synopsis of the book: A History of God: The 4,000-Year Quest of Judaism, Christianity, and Islam'),
+('The Bhagavad Gita', 173, 20, 1401, 101, 57.49, 3, 'You are now reading the synopsis of the book: The Bhagavad Gita'),
+('Choosing Our Religion: The Spiritual Lives of America''s Nones', 174, 20, 2016, 342, 28.42, 4, 'You are now reading the synopsis of the book: Choosing Our Religion: The Spiritual Lives of America''s Nones');
+
+/* Romance BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('Chase Me', 175, 21, 2016, 245, 25.27, 5, 'You are now reading the synopsis of the book: Chase Me'),
+('Black Dust', 176, 21, 2016, 384, 34.53, 5, 'You are now reading the synopsis of the book: Black Dust'),
+('Her Backup Boyfriend', 177, 21, 2015, 185, 33.97, 1, 'You are now reading the synopsis of the book: Her Backup Boyfriend'),
+('First and First', 178, 21, 2016, 244, 15.97, 4, 'You are now reading the synopsis of the book: First and First'),
+('Fifty Shades Darker', 179, 21, 2011, 532, 21.96, 1, 'You are now reading the synopsis of the book: Fifty Shades Darker'),
+('Suddenly in Love', 180, 21, 2016, 306, 55.99, 2, 'You are now reading the synopsis of the book: Suddenly in Love'),
+('Something More Than This', 181, 21, 2016, 210, 16.24, 4, 'You are now reading the synopsis of the book: Something More Than This'),
+('Doing It Over', 182, 21, 2016, 334, 35.61, 3, 'You are now reading the synopsis of the book: Doing It Over'),
+('The Wedding Pact', 183, 21, 2016, 352, 32.61, 3, 'You are now reading the synopsis of the book: The Wedding Pact'),
+('Best of My Love', 183, 21, 2016, 384, 27.41, 2, 'You are now reading the synopsis of the book: Best of My Love');
+
+/* Science BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('Immunity: How Elie Metchnikoff Changed the Course of Modern Medicine', 193, 22, 2016, 336, 57.36, 5, 'You are now reading the synopsis of the book: Immunity: How Elie Metchnikoff Changed the Course of Modern Medicine'),
+('Tipping Point for Planet Earth: How Close Are We to the Edge?', 194, 22, 2015, 272, 37.55, 1, 'You are now reading the synopsis of the book: Tipping Point for Planet Earth: How Close Are We to the Edge?'),
+('The Fabric of the Cosmos: Space, Time, and the Texture of Reality', 195, 22, 2004, 569, 55.91, 1, 'You are now reading the synopsis of the book: The Fabric of the Cosmos: Space, Time, and the Texture of Reality'),
+('Diary of a Citizen Scientist: Chasing Tiger Beetles and Other New Ways of Engaging the World', 196, 22, 2014, 224, 28.41, 1, 'You are now reading the synopsis of the book: Diary of a Citizen Scientist: Chasing Tiger Beetles and Other New Ways of Engaging the World'),
+('The Origin of Species', 197, 22, 1859, 703, 10.01, 4, 'You are now reading the synopsis of the book: The Origin of Species'),
+('The Grand Design', 198, 22, 2010, 199, 13.76, 3, 'You are now reading the synopsis of the book: The Grand Design'),
+('Peak: Secrets from the New Science of Expertise', 199, 22, 2016, 336, 16.28, 2, 'You are now reading the synopsis of the book: Peak: Secrets from the New Science of Expertise'),
+('The Elegant Universe: Superstrings, Hidden Dimensions, and the Quest for the Ultimate Theory', 195, 22, 1999, 464, 13.03, 4, 'You are now reading the synopsis of the book: The Elegant Universe: Superstrings, Hidden Dimensions, and the Quest for the Ultimate Theory'),
+('Seven Brief Lessons on Physics', 200, 22, 2014, 81, 30.60, 4, 'You are now reading the synopsis of the book: Seven Brief Lessons on Physics'),
+('The Selfish Gene', 201, 22, 1976, 360, 29.45, 1, 'You are now reading the synopsis of the book: The Selfish Gene');
+
+/* Science Fiction BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('Soft Apocalypse', 202, 23, 2011, 239, 26.12, 2, 'You are now reading the synopsis of the book: Soft Apocalypse'),
+('Sleeping Giants', 203, 23, 2016, 320, 48.74, 1, 'You are now reading the synopsis of the book: Sleeping Giants'),
+('The Restaurant at the End of the Universe', 204, 23, 1980, 250, 10.92, 1, 'You are now reading the synopsis of the book: The Restaurant at the End of the Universe'),
+('Ready Player One', 205, 23, 2011, 374, 19.07, 4, 'You are now reading the synopsis of the book: Ready Player One'),
+('Dune', 206, 23, 1965, 658, 54.86, 1, 'You are now reading the synopsis of the book: Dune'),
+('Three Wishes', 207, 23, 2016, 216, 44.18, 2, 'You are now reading the synopsis of the book: Three Wishes'),
+('The Last Girl', 208, 23, 2016, 386, 36.26, 2, 'You are now reading the synopsis of the book: The Last Girl'),
+('Having the Barbarian''s Baby', 209, 23, 2016, 64, 34.96, 4, 'You are now reading the synopsis of the book: Having the Barbarian''s Baby');
+
+/* Self Help BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('Online Marketing for Busy Authors: A Step-By-Step Guide', 210, 24, 2016, 168, 46.35, 1, 'You are now reading the synopsis of the book: Online Marketing for Busy Authors: A Step-By-Step Guide'),
+('How to Be Miserable: 40 Strategies You Already Use', 211, 24, 2016, 248, 46.03, 1, 'You are now reading the synopsis of the book: How to Be Miserable: 40 Strategies You Already Use'),
+('Overload: How to Unplug, Unwind, and Unleash Yourself from the Pressure of Stress', 212, 24, 2016, 256, 52.15, 3, 'You are now reading the synopsis of the book: Overload: How to Unplug, Unwind, and Unleash Yourself from the Pressure of Stress'),
+('You Are a Badass: How to Stop Doubting Your Greatness and Start Living an Awesome Life', 213, 24, 2013, 254, 12.08, 3, 'You are now reading the synopsis of the book: You Are a Badass: How to Stop Doubting Your Greatness and Start Living an Awesome Life'),
+('How to Stop Worrying and Start Living', 214, 24, 1944, 358, 46.49, 5, 'You are now reading the synopsis of the book: How to Stop Worrying and Start Living');
+
+/* Sequential Art BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('Scott Pilgrim''s Precious Little Life', 215, 25, 2004, 168, 8.29, 1, 'You are now reading the synopsis of the book: Scott Pilgrim''s Precious Little Life'),
+('Outcast, Vol. 1: A Darkness Surrounds Him', 216, 25, 2015, 152, 7.44, 4, 'You are now reading the synopsis of the book: Outcast, Vol. 1: A Darkness Surrounds Him'),
+('Jujutsu Kaisen vol 1', 217, 25, 2018, 192, 9.14, 5, 'You are now reading the synopsis of the book: Jujutsu Kaisen vol 1'),
+('Jujutsu Kaisen vol 2', 217, 25, 2018, 192, 9.14, 5, 'You are now reading the synopsis of the book: Jujutsu Kaisen vol 2'),
+('Jujutsu Kaisen vol 3', 217, 25, 2018, 192, 9.14, 5, 'You are now reading the synopsis of the book: Jujutsu Kaisen vol 3'),
+('Batman: The Long Halloween', 218, 25, 1997, 384, 12.50, 2, 'You are now reading the synopsis of the book: Batman: The Long Halloween'),
+('Kuroshitsuji vol 1', 219, 25, 2007, 192, 7.38, 5, 'You are now reading the synopsis of the book: Kuroshitsuji vol 1'),
+('Demon Slayer vol 1', 220, 25, 2016, 192, 8.34, 4, 'You are now reading the synopsis of the book: Demon Slayer vol 1'),
+('DANMACHI vol 1', 221, 25, 2013, 180, 15.89, 5, 'You are now reading the synopsis of the book: DANMACHI vol 1'),
+('DANMACHI vol 2', 221, 25, 2013, 368, 15.89, 3, 'You are now reading the synopsis of the book: DANMACHI vol 2'),
+('DANMACHI vol 3', 221, 25, 2013, 197, 15.89, 4, 'You are now reading the synopsis of the book: DANMACHI vol 3'),
+('DANMACHI vol 4', 221, 25, 2013, 248, 15.89, 4, 'You are now reading the synopsis of the book: DANMACHI vol 4'),
+('DANMACHI vol 5', 221, 25, 2013, 288, 15.89, 5, 'You are now reading the synopsis of the book: DANMACHI vol 5'),
+('DANMACHI vol 6', 221, 25, 2013, 265, 15.89, 5, 'You are now reading the synopsis of the book: DANMACHI vol 6'),
+('DANMACHI vol 7', 221, 25, 2013, 384, 15.89, 4, 'You are now reading the synopsis of the book: DANMACHI vol 7'),
+('DANMACHI vol 8', 221, 25, 2013, 394, 15.89, 3, 'You are now reading the synopsis of the book: DANMACHI vol 8'),
+('DANMACHI vol 9', 221, 25, 2013, 272, 15.89, 5, 'You are now reading the synopsis of the book: DANMACHI vol 9'),
+('DANMACHI vol 10', 221, 25, 2013, 304, 15.89, 5, 'You are now reading the synopsis of the book: DANMACHI vol 10'),
+('DANMACHI vol 11', 221, 25, 2013, 320, 15.89, 4, 'You are now reading the synopsis of the book: DANMACHI vol 11'),
+('DANMACHI vol 12', 221, 25, 2013, 256, 15.89, 5, 'You are now reading the synopsis of the book: DANMACHI vol 12'),
+('DANMACHI vol 13', 221, 25, 2013, 224, 15.89, 5, 'You are now reading the synopsis of the book: DANMACHI vol 13'),
+('DANMACHI vol 14', 221, 25, 2013, 432, 15.89, 5, 'You are now reading the synopsis of the book: DANMACHI vol 14'),
+('DANMACHI vol 15', 221, 25, 2013, 440, 15.89, 5, 'You are now reading the synopsis of the book: DANMACHI vol 15'),
+('DANMACHI vol 16', 221, 25, 2013, 280, 15.89, 5, 'You are now reading the synopsis of the book: DANMACHI vol 16'),
+('DANMACHI vol 17', 221, 25, 2013, 360, 15.89, 5, 'You are now reading the synopsis of the book: DANMACHI vol 17'),
+('DANMACHI vol 18', 221, 25, 2013, 456, 15.89, 5, 'You are now reading the synopsis of the book: DANMACHI vol 18'),
+('Naruto vol 1', 222, 25, 200, 192, 38.39, 2, 'You are now reading the synopsis of the book: Naruto vol 1'),
+('Yuuna and the Haunted Hot Springs', 223, 25, 2016, 192, 8.01, 5, 'You are now reading the synopsis of the book: Yuuna and the Haunted Hot Springs'),
+('Darling in the Franxx', 224, 25, 2022, 192, 7.95, 4, 'You are now reading the synopsis of the book: Darling in the Franxx'),
+('Henshin Emergence', 225, 25, 2013, 230, 19.57, 5, 'You are now reading the synopsis of the book: Henshin Emergence'),
+('Death Note, Vol. 1', 226, 25, 2010, 192, 8.39, 3, 'You are now reading the synopsis of the book: Death Note, Vol. 1');
+
+/* Spirituality BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('The Four Agreements: A Practical Guide to Personal Freedom', 227, 26, 1997, 153, 17.66, 5, 'You are now reading the synopsis of the book: The Four Agreements: A Practical Guide to Personal Freedom'),
+('The Activist''s Tao Te Ching: Ancient Advice for a Modern Revolution', 228, 26, 2016, 128, 32.24, 5, 'You are now reading the synopsis of the book:'),
+('Chasing Heaven: What Dying Taught Me About Living', 229, 26, 2016, 304, 37.80, 2, 'You are now reading the synopsis of the book: Chasing Heaven: What Dying Taught Me About Living'),
+('If I Gave You God''s Phone Number....: Searching for Spirituality in America', 230, 26, 2002, 278, 20.91, 1, 'You are now reading the synopsis of the book: If I Gave You God''s Phone Number....: Searching for Spirituality in America'),
+('Unreasonable Hope: Finding Faith in the God Who Brings Purpose to Your Pain', 231, 26, 2016, 224, 46.33, 2, 'You are now reading the synopsis of the book:Unreasonable Hope: Finding Faith in the God Who Brings Purpose to Your Pain'),
+('A New Earth: Awakening to Your Life''s Purpose', 232, 26, 2005, 316, 55.65, 4, 'You are now reading the synopsis of the book: A New Earth: Awakening to Your Life''s Purpose');
+
+/* Thriller BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('In Her Wake', 233, 27, 2014, 177, 12.84, 1, 'You are now reading the synopsis of the book: In Her Wake'),
+('The Elephant Tree', 234, 27, 2010, 252, 23.82, 5, 'You are now reading the synopsis of the book: The Elephant Tree'),
+('Behind Closed Doors', 235, 27, 2016, 293, 52.22, 4, 'You are now reading the synopsis of the book: Behind Closed Doors'),
+('You', 236, 27, 2014, 464, 43.61, 5, 'You are now reading the synopsis of the book: You'),
+('The Guilty', 237, 27, 2015, 433, 13.82, 2, 'You are now reading the synopsis of the book: The Guilty (Will Robie #4)'),
+('Give It Back', 238, 27, 2017, 302, 18.32, 2, 'You are now reading the synopsis of the book: Give It Back'),
+('Killing Floor', 239, 27, 1997, 562, 31.49, 4, 'You are now reading the synopsis of the book: Killing Floor'),
+('The Bone Hunters', 240, 27, 2015, 411, 59.71, 3, 'You are now reading the synopsis of the book: The Bone Hunters'),
+('Far From True', 241, 27, 2016, 287, 34.93, 2, 'You are now reading the synopsis of the book: Far From True');
+
+/* Travel BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('It''s Only the Himalayas', 251, 28, 2016, 224, 45.17, 2, 'You are now reading the synopsis of the book: It''s Only the Himalayas'),
+('Full Moon over Noah''s Ark: An Odyssey to Mount Ararat and Beyond', 252, 28, 2016, 408, 49.43, 4, 'You are now reading the synopsis of the book: Full Moon over Noah''s Ark: An Odyssey to Mount Ararat and Beyond'),
+('See America: A Celebration of Our National Parks & Treasured Sites', 253, 28, 2016, 176, 48.87, 3, 'You are now reading the synopsis of the book: See America: A Celebration of Our National Parks & Treasured Sites'),
+('Vagabonding: An Uncommon Guide to the Art of Long-Term World Travel', 254, 28, 2002, 240, 36.94, 2, 'You are now reading the synopsis of the book: Vagabonding: An Uncommon Guide to the Art of Long-Term World Travel'),
+('Under the Tuscan Sun', 255, 28, 1997, 320, 37.33, 3, 'You are now reading the synopsis of the book: Under the Tuscan Sun'),
+('A Summer In Europe', 256, 28, 2011, 353, 44.34, 2, 'You are now reading the synopsis of the book: A Summer In Europe'),
+('The Great Railway Bazaar', 257, 28, 1975, 352, 30.54, 1, 'You are now reading the synopsis of the book: The Great Railway Bazaar'),
+('A Year in Provence', 258, 28, 1989, 224, 56.88, 4, 'You are now reading the synopsis of the book: A Year in Provence'),
+('The Road to Little Dribbling: Adventures of an American in Britain', 104, 28, 2015, 400, 23.21, 1, 'You are now reading the synopsis of the book: The Road to Little Dribbling: Adventures of an American in Britain'),
+('Neither Here nor There: Travels in Europe', 104, 28, 1991, 245, 38.95, 3, 'You are now reading the synopsis of the book: Neither Here nor There: Travels in Europe'),
+('1,000 Places to See Before You Die', 259, 28, 2003, 1216, 26.08, 5, 'You are now reading the synopsis of the book: 1,000 Places to See Before You Die');
+
+/* Womens fiction BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('Will You Won''t You Want Me?', 262, 29, 2015, 320, 13.86, 3, 'You are now reading the synopsis of the book: Will You Won''t You Want Me?'),
+('Fifty Shades of Grey', 179, 29, 2011, 356, 48.49, 4, 'You are now reading the synopsis of the book: Fifty Shades of Grey'),
+('Meternity', 263, 29, 2016, 368, 43.58, 3, 'You are now reading the synopsis of the book: Meternity'),
+('Twenties Girl', 264, 29, 2009, 435, 42.80, 2, 'You are now reading the synopsis of the book: Twenties Girl'),
+('The Undomestic Goddess', 264, 29, 2005, 404, 45.75, 4, 'You are now reading the synopsis of the book: The Undomestic Goddess'),
+('The Devil Wears Prada', 265, 29, 2003, 384, 44.29, 1, 'You are now reading the synopsis of the book: The Devil Wears Prada'),
+('I''ve Got Your Number', 264, 29, 2011, 448, 19.69, 1, 'You are now reading the synopsis of the book: I''ve Got Your Number'),
+('The Edge of Reason', 266, 29, 1999, 352, 19.18, 4, 'You are now reading the synopsis of the book: The Edge of Reason'),
+('Can You Keep a Secret', 264, 29, 2003, 374, 21.94, 1, 'You are now reading the synopsis of the book: Can You Keep a Secret');
+
+/* Young adult BOOKS */
+
+INSERT INTO books (title, author_id, genre_id, published_date, page_number, price, rating, synopsis) VALUES
+('The Requiem Red', 267, 30, 2016, 300, 22.65, 1, 'You are now reading the synopsis of the book: The Requiem Red'),
+('Library of Souls', 268, 30, 2015, 465, 48.56, 5, 'You are now reading the synopsis of the book: Library of Souls'),
+('Frostbite', 269, 30, 2008, 327, 29.99, 5, 'You are now reading the synopsis of the book: Frostbite'),
+('Wild Swans', 270, 30, 1991, 562, 14.36, 2, 'You are now reading the synopsis of the book: Wild Swans'),
+('Until Friday Night', 271, 30, 2015, 336, 46.31, 2, 'You are now reading the synopsis of the book: Until Friday Night'),
+('This Is Where It Ends', 272, 30, 2016, 288, 27.12, 2, 'You are now reading the synopsis of the book: This Is Where It Ends'),
+('The Darkest Lie', 273, 30, 2010, 442, 35.35, 5, 'You are now reading the synopsis of the book: The Darkest Lie'),
+('My Kind of Crazy', 274, 30, 2016, 336, 40.36, 1, 'You are now reading the synopsis of the book: My Kind of Crazy'),
+('The Epidemic', 275, 30, 2016, 385, 14.44, 5, 'You are now reading the synopsis of the book: The Epidemic'),
+('No Love Allowed', 276, 30, 2016, 244, 54.65, 4, 'You are now reading the synopsis of the book: No Love Allowed'),
+('Harry Potter and the Prisoner of Azkaban', 27, 30, 1999, 435, 24.17, 5, 'You are now reading the synopsis of the book: Harry Potter and the Prisoner of Azkaban');
+
