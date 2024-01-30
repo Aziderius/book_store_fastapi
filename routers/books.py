@@ -112,25 +112,57 @@ async def read_books_by_published_year(db:db_dependency, published_year: int = Q
     raise HTTPException(status_code=404, detail='Books not found.')
 
 
+@router.get("/books_pages_number", status_code=status.HTTP_200_OK)
+async def read_books_by_number_of_pages(db: db_dependency,
+                                        pages_number_min: int = Query(..., title='Pages number Minimum', gt=0),
+                                        pages_number_max: int = Query(..., title='Pages number Maxmimum', gt=0)):
+    pages_model = db.query(Books).filter(Books.page_number.between(pages_number_min, pages_number_max)).all()
+    if pages_model is not None:
+        return pages_model
+    
+    raise HTTPException(status_code=404, detail='Books not found.')
+
+
+@router.get("/genre/pages_number", status_code=status.HTTP_200_OK)
+async def read_books_by_genre_and_pages(db: db_dependency,
+                                        genre_name : str = Query(...),
+                                        pages_number_min: int = Query(..., title='Pages number Minimum', gt=0),
+                                        pages_number_max: int = Query(..., title='Pages number Maxmimum', gt=0)):
+    
+    genre_pages_model = db.query(Books).join(Genre, Books.genre_id == Genre.id)\
+    .filter(Genre.genre_name == genre_name, Books.page_number.between(pages_number_min, pages_number_max)).all()
+
+    if genre_pages_model is not None:
+        return genre_pages_model
+    
+    raise HTTPException(status_code=404, detail='Books not found.')
+
+
 @router.get("/book/{book_id}", status_code=status.HTTP_200_OK)
 async def read_book_by_id(db: db_dependency, book_id: int = Path(gt=0)):
+
     book_model = db.query(Books).filter(Books.id == book_id).first()
     if book_model is not None:
         return book_model
+    
     raise HTTPException(status_code=404, detail='Book not found.')
 
 
 @router.get("/author/{author_id}", status_code=status.HTTP_200_OK)
 async def find_author_by_id(db: db_dependency, author_id: int = Path(gt=0)):
+
     author_model = db.query(Author).filter(Author.id == author_id).first()
     if author_model is not None:
         return author_model
+    
     raise HTTPException(status_code=404, detail='Author not found.')
 
 
 @router.get("/genre/{genre_id}", status_code=status.HTTP_200_OK)
 async def find_genre_by_id(db: db_dependency, genre_id: int = Path(gt=0)):
+
     genre_model = db.query(Genre).filter(Genre.id == genre_id).first()
     if genre_model is not None:
         return genre_model
+    
     raise HTTPException(status_code=404, detail='genre not found.')
