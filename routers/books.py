@@ -9,7 +9,11 @@ from starlette import status
 from enum import Enum
 
 
-router = APIRouter()
+router = APIRouter(
+    prefix='/books',
+    tags=['books']
+)
+
 
 def get_db():
     db = SessionLocal()
@@ -22,7 +26,7 @@ def get_db():
 db_dependency = Annotated[Session, Depends(get_db)]
 
 
-@router.get("/books/", status_code=status.HTTP_200_OK)
+@router.get("/", status_code=status.HTTP_200_OK)
 async def read_all_books(db: db_dependency):
     return db.query(Books).all()
 
@@ -138,7 +142,7 @@ async def read_books_by_genre_and_pages(db: db_dependency,
     raise HTTPException(status_code=404, detail='Books not found.')
 
 
-@router.get("/book/{book_id}", status_code=status.HTTP_200_OK)
+@router.get("/{book_id}", status_code=status.HTTP_200_OK)
 async def read_book_by_id(db: db_dependency, book_id: int = Path(gt=0)):
 
     book_model = db.query(Books).filter(Books.id == book_id).first()
