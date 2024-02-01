@@ -6,7 +6,6 @@ from sqlalchemy.orm import Session
 from sqlalchemy.sql.expression import func, select
 from sqlalchemy import join
 from starlette import status
-from enum import Enum
 
 
 router = APIRouter(

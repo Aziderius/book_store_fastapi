@@ -40,3 +40,11 @@ class Books(Base):
     rating = Column(Integer)
     synopsis = Column(String)
 
+
+class Own_library(Base):
+    __tablename__ = "own_library"
+    id = Column(Integer, primary_key=True, index=True)
+    book_id = Column(Integer, ForeignKey("books.id"))
+    personal_description = Column(String)
+    personal_rating = Column(Integer)
+    owner_id = Column(Integer, ForeignKey("users.id"))
